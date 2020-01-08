@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --fix-missing \
         libpng-dev \
         exiftool
         
-RUN docker-php-ext-install -j$(nproc) zip --with-libzip
+RUN docker-php-ext-install -j$(nproc) zip
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-configure exif
