@@ -6,7 +6,7 @@ rsync -auv --chown=1000:1000 /var/www/html /
 #Then sync repeatidly
 while :
 do
-    rsync -auv --delete --chown=www-data:www-data /html /var/www
+    rsync -auv --chown=www-data:www-data /html /var/www
     sleep 1
 done
 

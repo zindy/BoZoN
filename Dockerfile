@@ -28,7 +28,7 @@ RUN docker-php-ext-install -j$(nproc) exif
 # RUN docker-php-ext-enable exif
 
 COPY --chown=www-data:www-data . /var/www/html/
-COPY sync /usr/bin
+COPY ./sync /usr/bin
 RUN chmod +x /usr/bin/sync
 
 VOLUME /html
