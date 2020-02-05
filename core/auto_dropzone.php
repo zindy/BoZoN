@@ -48,12 +48,18 @@ if (!is_file('core.php')){$path_core='core/';}else{$path_core='';}
 
 // Configuration
 $phpini=ini_get_all();
+
+
+if (strpos($upload_max_filesize,'G')!=false){$upload_max_filesize=intval($upload_max_filesize*1024);}
+else{$upload_max_filesize=intval($upload_max_filesize);}
+
+
 $default_config=array(
     'forbidden_filetypes'=>'php',
     'allow_unknown_filetypes'=>$allow_unknown_filetypes,
     'use_style'=>false,                         // false if you're using a external css file
     'auto_refresh_after_upload'=>true,          // auto refresh page after uploading files (except on errors)
-    'max_length'=>$max_length,
+    'upload_max_filesize'=>$upload_max_filesize,
     'dropzone_text'=>e('Drop your files here or click to select a local file',false),
     'dropzone_id'=>'dropArea',
     'dropzone_class'=>'dropArea',
@@ -81,7 +87,7 @@ $ini_max_post=$phpini['post_max_size']['local_value'];
 if (strpos($ini_max_post,'G')!=false){$ini_max_post=intval($ini_max_post*1024);}
 else{$ini_max_post=intval($ini_max_post);}
 
-$max=min($auto_dropzone['max_length'],$ini_max_upload,$ini_max_post);
+$max=min($auto_dropzone['upload_max_filesize'],$ini_max_upload,$ini_max_post);
 $_SESSION['max_size']=$max;
 $file_length_error=e('Error, max filelength:',false).' '.$max.' Mo';
 $file_format_error=e(': Error, forbidden file format !',false);

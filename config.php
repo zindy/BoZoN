@@ -12,8 +12,8 @@
 	#############################################################
 	# Path config (change it BEFORE first start)
 	#############################################################
-	$default_path='uploads/'; 												# upload folder
-	$default_private='private/'; 											# private folder
+	$default_path=$_ENV["DEFAULT_PATH"];
+	$default_private=$_ENV["PRIVATE_PATH"];
 	$default_id_file=$default_private.'id.php';								# IDs file name
 	$default_config_file=$default_private.'config.php';						# config file name
 	$default_temp_folder=$default_private.'temp/';							# temp folder path 
@@ -51,7 +51,7 @@
 	$allow_unknown_filetypes=true;								# true= allow exotic filetypes (when filetype mime is not recognised)
 	$use_lightbox=true;											# false= view in a new tab
 	$remove_item_from_users_share_when_renew_id=false;			# false= id will be updated in share file, true= id will be removed from share file
-	$max_length=2048;							// Mo (see php.ini if changes doesn't work [post_max_size / upload_max_filesize])
+	$upload_max_filesize=$_ENV["UPLOAD_MAX_FILESIZE"];
 
 	#############################################################
 	# Profiles config
@@ -61,6 +61,6 @@
 	#############################################################
 	# Misc
 	#############################################################
-	$cron_security_string='aQw1zSx2eDc3rFv4';					# basic security access: change it. cron url is: www.myserver.com/?cron_update=aQw1zSx2eDc3rFv4
+	$cron_security_string=$_ENV["SECURITY_STRING"];
 
 ?>
